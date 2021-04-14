@@ -5,10 +5,9 @@ import torch.nn.functional as F
 import numpy as np
 from models.residual import ResidualStack
 
-
 class Decoder(nn.Module):
     """
-    This is the p_phi (x|z) network. Given a latent sample z p_phi 
+    This is the p_phi (x|z) network. Given a latent sample z p_phi
     maps back to the original space z -> x.
 
     Inputs:
@@ -22,9 +21,9 @@ class Decoder(nn.Module):
     def __init__(self, in_dim, h_dim, n_res_layers, res_h_dim):
         super(Decoder, self).__init__()
         self.inverse_conv_stack = nn.Sequential(
-            nn.ConvTranspose2d(512, 128, 2, 1),
-            ResidualStack(128, 128, res_h_dim, n_res_layers),
-            nn.ConvTranspose2d(128, 64, 3, 2),
+            nn.ConvTranspose2d(64, 64, 2, 1),
+            ResidualStack(64, 64, res_h_dim, n_res_layers),
+            nn.ConvTranspose2d(64, 64, 3, 2),
             nn.ConvTranspose2d(64, 32, 4, 2),
             nn.ConvTranspose2d(32, 3, 8, 4, padding = (1, 2))
         )
