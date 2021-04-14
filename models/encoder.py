@@ -13,11 +13,11 @@ class Encoder(nn.Module):
     self.conv_stack = nn.Sequential(
         nn.Conv2d(in_dim, 32, 8, 4),
         nn.ReLU(),
-        nn.Conv2d(32, 128, 4, 2),
+        nn.Conv2d(32, 32, 4, 2),
         nn.ReLU(),
-        nn.Conv2d(128, 512, 3, 2),
+        nn.Conv2d(32, 64, 3, 2),
         ResidualStack(
-            512, 512, res_h_dim, n_res_layers)
+            64, 64, res_h_dim, n_res_layers)
 
     )
 
